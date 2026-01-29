@@ -25,8 +25,8 @@ if [[ $# -eq 0 ]]; then
     exit 1
 fi
 
-if ! command -v aria2c &> /dev/null ; then
-    echo "Error: aria2c could not be found. Please install aria2c (sudo apt install aria2)."
+if ! command -v curl &> /dev/null ; then
+    echo "Error: curl could not be found. Please install curl (sudo apt install curl)."
     exit 1
 fi
 
@@ -42,8 +42,8 @@ SPROT_BASENAME=$(basename "${SPROT_SOURCE_URL}")
 SPROT_UNZIPPED_BASENAME="${SPROT_BASENAME%.gz}"
 
 mkdir --parents "${ROOT_DIR}"
-aria2c "${TREMBL_SOURCE_URL}" --dir="${ROOT_DIR}"
-aria2c "${SPROT_SOURCE_URL}" --dir="${ROOT_DIR}"
+curl -L "${TREMBL_SOURCE_URL}" -o "${ROOT_DIR}/${TREMBL_BASENAME}"
+curl -L "${SPROT_SOURCE_URL}" -o "${ROOT_DIR}/${SPROT_BASENAME}"
 pushd "${ROOT_DIR}"
 gunzip "${ROOT_DIR}/${TREMBL_BASENAME}"
 gunzip "${ROOT_DIR}/${SPROT_BASENAME}"

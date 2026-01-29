@@ -24,8 +24,8 @@ if [[ $# -eq 0 ]]; then
     exit 1
 fi
 
-if ! command -v aria2c &> /dev/null ; then
-    echo "Error: aria2c could not be found. Please install aria2c (sudo apt install aria2)."
+if ! command -v curl &> /dev/null ; then
+    echo "Error: curl could not be found. Please install curl (sudo apt install curl)."
     exit 1
 fi
 
@@ -35,7 +35,7 @@ SOURCE_URL="https://files.wwpdb.org/pub/pdb/derived_data/pdb_seqres.txt"
 BASENAME=$(basename "${SOURCE_URL}")
 
 mkdir --parents "${ROOT_DIR}"
-aria2c "${SOURCE_URL}" --dir="${ROOT_DIR}"
+curl -L "${SOURCE_URL}" -o "${ROOT_DIR}/${BASENAME}"
 
 # Keep only protein sequences.
 grep --after-context=1 --no-group-separator '>.* mol:protein' "${ROOT_DIR}/pdb_seqres.txt" > "${ROOT_DIR}/pdb_seqres_filtered.txt"

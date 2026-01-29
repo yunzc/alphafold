@@ -24,8 +24,8 @@ if [[ $# -eq 0 ]]; then
     exit 1
 fi
 
-if ! command -v aria2c &> /dev/null ; then
-    echo "Error: aria2c could not be found. Please install aria2c (sudo apt install aria2)."
+if ! command -v curl &> /dev/null ; then
+    echo "Error: curl could not be found. Please install curl (sudo apt install curl)."
     exit 1
 fi
 
@@ -37,7 +37,7 @@ SOURCE_URL="https://storage.googleapis.com/alphafold-databases/v2.3/mgy_clusters
 BASENAME=$(basename "${SOURCE_URL}")
 
 mkdir --parents "${ROOT_DIR}"
-aria2c "${SOURCE_URL}" --dir="${ROOT_DIR}"
+curl -L "${SOURCE_URL}" -o "${ROOT_DIR}/${BASENAME}"
 pushd "${ROOT_DIR}"
 gunzip "${ROOT_DIR}/${BASENAME}"
 popd
