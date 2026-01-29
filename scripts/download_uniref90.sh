@@ -35,7 +35,7 @@ SOURCE_URL="https://ftp.ebi.ac.uk/pub/databases/uniprot/uniref/uniref90/uniref90
 BASENAME=$(basename "${SOURCE_URL}")
 
 mkdir --parents "${ROOT_DIR}"
-curl -L "${SOURCE_URL}" -o "${ROOT_DIR}/${BASENAME}"
+curl -C - -L "${SOURCE_URL}" -o "${ROOT_DIR}/${BASENAME}"
 pushd "${ROOT_DIR}"
 gunzip "${ROOT_DIR}/${BASENAME}"
 popd

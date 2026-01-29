@@ -35,7 +35,7 @@ SOURCE_URL="http://wwwuser.gwdg.de/~compbiol/data/hhsuite/databases/hhsuite_dbs/
 BASENAME=$(basename "${SOURCE_URL}")
 
 mkdir --parents "${ROOT_DIR}"
-curl -L "${SOURCE_URL}" -o "${ROOT_DIR}/${BASENAME}"
+curl -C - -L "${SOURCE_URL}" -o "${ROOT_DIR}/${BASENAME}"
 tar --extract --verbose --file="${ROOT_DIR}/${BASENAME}" \
   --directory="${ROOT_DIR}"
 rm "${ROOT_DIR}/${BASENAME}"

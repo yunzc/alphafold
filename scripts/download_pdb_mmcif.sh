@@ -62,4 +62,4 @@ done
 # Delete empty download directory structure.
 find "${RAW_DIR}" -type d -empty -delete
 
-curl -L "https://files.wwpdb.org/pub/pdb/data/status/obsolete.dat" -o "${ROOT_DIR}/obsolete.dat"
+curl -C - -L "https://files.wwpdb.org/pub/pdb/data/status/obsolete.dat" -o "${ROOT_DIR}/obsolete.dat"

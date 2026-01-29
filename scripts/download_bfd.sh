@@ -37,7 +37,7 @@ SOURCE_URL="https://storage.googleapis.com/alphafold-databases/casp14_versions/b
 BASENAME=$(basename "${SOURCE_URL}")
 
 mkdir --parents "${ROOT_DIR}"
-curl -L "${SOURCE_URL}" -o "${ROOT_DIR}/${BASENAME}"
+curl -C - -L "${SOURCE_URL}" -o "${ROOT_DIR}/${BASENAME}"
 tar --extract --verbose --file="${ROOT_DIR}/${BASENAME}" \
   --directory="${ROOT_DIR}"
 rm "${ROOT_DIR}/${BASENAME}"
